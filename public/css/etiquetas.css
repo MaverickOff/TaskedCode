@@ -1,0 +1,28 @@
+body {
+  background-color: rgba(184, 188, 223, 0.233);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+*:focus {
+  outline: none;
+}
+
+h1 {
+  text-transform: uppercase;
+  margin: 9.5%;
+  font-weight: 300 !important;
+}
+
+legend {
+  text-align: center;
+  color: rgb(66, 66, 66);
+}
+
+strong {
+  font-weight: bolder !important;
+}
+
+a {
+  text-decoration: underline;
+}

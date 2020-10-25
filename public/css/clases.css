@@ -1,0 +1,132 @@
+#panel-de-tareas {
+  display: none;
+}
+#login {
+  display: block;
+}
+/* CENTRAR CONTENIDO*/
+.centrar {
+  margin-top: 8%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+}
+
+/* TAREAS */
+.input-tarea {
+  border: none !important;
+  width: 40%;
+  padding: 10px;
+}
+.btn-tarea {
+  border-radius: 0% !important;
+  padding: 8px;
+}
+/*REGISTRO*/
+.cuadro-registro {
+  background-color: white;
+  width: 60%;
+  float: left;
+}
+
+.btn-registro {
+  border: none;
+  width: 94% !important;
+  display: inline-block !important;
+  padding: 2%;
+  margin: 3%;
+  color: white;
+  background-color: #2b71afc9;
+  width: auto;
+}
+
+.input-registro {
+  width: 100%;
+  padding: 2%;
+  margin: 3%;
+  border: none;
+  background-color: rgba(184, 188, 223, 0.233);
+  color: rgb(87, 87, 87);
+}
+
+.input-registro::placeholder {
+  font-size: medium;
+  color: rgb(141, 141, 141);
+}
+
+/*INICIO SESIÓN*/
+.cuadro-login {
+  background-color: #2b71afc9;
+  width: 40%;
+  float: left;
+}
+
+.btn-ingreso {
+  padding: 15px !important;
+  margin-top: 5%;
+  margin-bottom: 5.5%;
+  margin-right: 4%;
+  border: none;
+  color: white;
+  background-color: #2b71afc9;
+  width: auto;
+  float: right;
+}
+
+.link-control {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-size: medium;
+  margin-top: 7%;
+  margin-left: 7%;
+  float: left;
+}
+
+.input-ingreso {
+  width: 100%;
+  padding: 3%;
+  margin: 4%;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: rgb(87, 87, 87);
+}
+
+.input-ingreso::placeholder {
+  font-size: medium;
+  color: rgb(151, 151, 151);
+}
+
+/* MENSAJES */
+#mensajeError {
+  visibility: hidden;
+  text-align: center;
+  padding: 1% !important;
+  border: 1px solid rgb(255, 34, 34);
+  background-color: rgba(250, 120, 120, 0.418);
+  color: rgb(36, 29, 29);
+}
+
+#mensajeValidar {
+  background-color: gray !important;
+  margin-top: 10%;
+  margin-right: 5%;
+}
+
+.mensajeError {
+  font-weight: 700 !important;
+}
+
+#nombreTareaTabla {
+  width: 20%;
+  float: inline-start;
+}
+
+#detalleTareaTabla {
+  width: 60%;
+  float: center;
+}
+
+#estadoTarea {
+  width: 20% !important;
+  float: right;
+}
