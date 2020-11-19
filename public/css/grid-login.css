@@ -1,0 +1,87 @@
+#panel-de-tareas {
+  display: none;
+}
+#login {
+  display: block;
+}
+.grid-container-login {
+  display: grid;
+  grid-template-areas:
+    "header header header header header header"
+    "menu registro registro login login right"
+    "menu footer footer footer footer right";
+}
+.grid-login,
+.grid-registrar {
+  padding: 20px;
+  margin-top: 20%;
+}
+.grid-registrar {
+  grid-area: registro;
+  background: white;
+}
+.grid-login {
+  grid-area: login;
+  background-color: #2b71afc9;
+}
+.grid-validacion {
+  display: block;
+  grid-area: footer;
+  margin-top: 3%;
+  background-color: rgb(230, 147, 23);
+  color: white;
+  position: fixed;
+  padding: 5px;
+  margin-left: 30%;
+  margin-right: auto;
+}
+
+.grid-eliminar-validacion {
+  border: none;
+  background-color: transparent;
+  color: white;
+  outline: none;
+}
+
+/* INPUTS LOGIN Y REGISTRO */
+
+.input-registro,
+.input-ingreso {
+  width: 100%;
+  padding: 2%;
+  margin-top: 4%;
+  border: none;
+}
+
+.input-registro {
+  background-color: rgba(184, 188, 223, 0.233);
+  color: rgb(87, 87, 87);
+}
+.input-ingreso {
+  background-color: rgb(255, 255, 255);
+  color: rgb(87, 87, 87);
+}
+
+/* BOTONES LOGIN Y REGISTRO */
+
+.btn-registro,
+.btn-ingreso {
+  margin-top: 5%;
+  padding: 15px;
+  border: none;
+  color: white;
+}
+.btn-registro::placeholder,
+.btn-ingreso::placeholder {
+  font-size: medium;
+  color: rgb(151, 151, 151);
+}
+
+.btn-registro {
+  background-color: #2b71afc9;
+}
+
+.btn-ingreso {
+  background-color: #2b71afc9;
+  float: right;
+}

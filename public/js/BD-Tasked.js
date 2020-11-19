@@ -4,22 +4,28 @@ firebase.initializeApp({
     authDomain: "taskedproject.firebaseapp.com",
     projectId: "taskedproject",
 });
+
 var db = firebase.firestore();
 
 // AGREGAR DATOS
 function guardar() {
     var nombre = document.getElementById("nombreTarea").value;
     var descripcion = document.getElementById("descripcionTarea").value;
+    var fecha = document.getElementById("fecha").value;
+    var estado = false;
 
     db.collection("users")
         .add({
             first: nombre,
             last: descripcion,
+            date: fecha,
+            estado: estado,
         })
         .then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
             document.getElementById("nombreTarea").value = "";
             document.getElementById("descripcionTarea").value = "";
+
         })
         .catch(function (error) {
             console.error("Error adding document: ", error);
@@ -34,15 +40,13 @@ db.collection("users").onSnapshot((querySnapshot) => {
         console.log(`${doc.id} => ${doc.data().first}`);
         document.getElementById("tabla").innerHTML += `
       <tr>
-      <td></td>
         <td>${doc.data().first}</td>
         <td>${doc.data().last}</td>
-        
-      <td>
-      <button onclick="borrar('${doc.id}')" class="btn btn-danger btn-tarea">Eliminar</button>
-      </td>
-      <td>
-      <button onclick="editar('${doc.id}', '${doc.data().first}', '${doc.data().last}')" class="btn btn-info btn-tarea">Editar</button>
+        <td>${doc.data().date}</td>
+      
+      <td class="text-center">
+      <button onclick="borrar('${doc.id}')" class="btn btn-eliminar">Eliminar</button>
+      <button onclick="editar('${doc.id}', '${doc.data().first}', '${doc.data().last}', '${doc.data().date}')" class="btn btn-editar">Editar</button>
       </td>
       </tr>
       `;
@@ -50,16 +54,16 @@ db.collection("users").onSnapshot((querySnapshot) => {
 });
 
 // EDITAR DATOS
-function editar(id, nombre, descripcion) {
+function editar(id, nombre, descripcion, fecha) {
     document.getElementById('nombreTarea').value = nombre;
     document.getElementById('descripcionTarea').value = descripcion;
+    document.getElementById('fecha').value = fecha;
 
     var boton = document.getElementById('boton');
-    boton.innerHTML = 'Editar';
+    boton.innerHTML = 'Editar tarea';
 
     boton.onclick = function () {
         var washingtonRef = db.collection("users").doc(id);
-        // Set the "capital" field of the city 'DC'
 
         var nombre = document.getElementById('nombreTarea').value;
         var descripcion = document.getElementById('descripcionTarea').value;
@@ -67,6 +71,7 @@ function editar(id, nombre, descripcion) {
         return washingtonRef.update({
             first: nombre,
             last: descripcion,
+            date: fecha,
         })
             .then(function () {
                 console.log("Document successfully updated!");
@@ -75,12 +80,9 @@ function editar(id, nombre, descripcion) {
                 document.getElementById("descripcionTarea").value = "";
             })
             .catch(function (error) {
-                // The document probably doesn't exist.
                 console.error("Error updating document: ", error);
             });
     }
-
-
 }
 // ELIMINAR DATOS
 function borrar(id) {
@@ -94,3 +96,4 @@ function borrar(id) {
             console.error("Error removing document: ", error);
         });
 }
+

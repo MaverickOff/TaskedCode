@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+}
+.grid-container-tabla {
+  display: grid;
+  grid-template-areas: "main main main main main main main main right";
+}
+
+.grid-tabla,
+th {
+  padding: 10px;
+}
+
+.grid-tabla {
+  grid-area: main;
+  background: rgb(255, 255, 255);
+  padding: 5px;
+}
+
+/* INPUTS TAREA */
+.input-tarea,
+.input-fecha {
+  border: none;
+  width: 25%;
+  margin-top: 20px;
+  margin-left: 15px;
+  padding: 10px;
+}
+
+/* BOTONES */
+.btn-tarea,
+.btn-eliminar,
+.btn-editar {
+  border-radius: 0%;
+  border: none;
+}
+.btn-editar,
+.btn-tarea {
+  color: aliceblue;
+  background-color: rgb(30, 128, 226);
+}
+.btn-tarea {
+  grid-area: menu;
+  padding: 10px;
+  width: 10%;
+}
+.btn-eliminar {
+  color: aliceblue;
+  background-color: rgb(238, 27, 27);
+}
+.btn-cerrar-session {
+  color: aliceblue;
+  border: none;
+  background-color: rgb(236, 166, 13);
+}
+th,
+td,
+thead {
+  padding: 10px !important;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.088);
+}
+th {
+  text-align: left;
+}
+.opciones {
+  text-align: center;
+}
+td {
+  text-align: left;
+}
+table {
+  margin-top: 5%;
+  margin-left: 2%;
+}
+thead {
+  margin: 10%;
+}

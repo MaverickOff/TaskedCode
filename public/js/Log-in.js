@@ -1,5 +1,3 @@
-//Fix
-
 //Crear usuario
 function registrarCuenta() {
     var emailNew = document.getElementById("email-new").value;
@@ -43,7 +41,7 @@ function observador() {
         if (user) {
             console.log("Hay un usuario con una sesión activa");
             console.log(user.emailVerified);
-            var emailVerified = user.emailVerified;
+            // var emailVerified = user.emailVerified;
             mostrar(user);
         } else {
             console.log("No hay ninguna sesión activa");
@@ -58,7 +56,7 @@ function cerrarSesion() {
         .auth()
         .signOut()
         .then(function () {
-            console.log("Sesión cerrada");
+            alert("Has cerrado sesión, actualiza la página :)");
         })
         .catch(function (error) {
             console.log(error);
@@ -67,15 +65,27 @@ function cerrarSesion() {
 //Mostrar contenido
 function mostrar(user) {
     var user = user;
-    var contenido = document.getElementById("panel-de-tareas");
+    var panel_tareas = document.getElementById("panel-de-tareas");
+    var mensaje_validar_correo = document.getElementById("mensajeValidacion");
 
     if (user.emailVerified) {
-        contenido.style.display = "block";
+        panel_tareas.style.display = "block";
         document.getElementById("login").style.display = "none";
     } else {
-        contenido.innerHTML = `
-      <h1 class="bg-warning">Te enviamos un correo de verificación, por favor, ábrelo.</h1>
+        if (mensaje_validar_correo.style.display == "block") {
+            mensaje_validar_correo.style.display = "none";
+            mensaje_validar_correo.innerHTML = `
+            <div class="grid-validacion">
+            <header class="text-right"><button id="eliminar_popup" class="grid-eliminar-validacion"
+            onclick="eliminar_popup()">&times;</button>
+            </header>
+            <h4 class="p-3">Te hemos dejado un mensaje en tu correo para verificar tu cuenta</h4>
+            </div>
       `;
+        } else {
+            mensaje_validar_correo.style.display = "block";
+        }
+
     }
 }
 
@@ -85,44 +95,15 @@ function verificarCuenta() {
     user
         .sendEmailVerification()
         .then(function () {
-            console.log("Enviando correo");
+            // console.log("Enviando correo")
+            alert("Te hemos enviado un correo de verificación, ábrelo para poder verificar tu cuenta :D");
         })
         .catch(function (error) {
+            alert(error)
             console.log(error);
         });
 }
-
-
-
-// <div class="" id="tasked">
-// <input
-//   type="text"
-//   id="nombre"
-//   class="form-control mt-5"
-//   placeholder="Nombre de tu tarea"
-// />
-// <input
-//   type="text"
-//   id="descripcion"
-//   class="form-control mt-5"
-//   placeholder="Descripción de tu tarea"
-// />
-// <input
-//   type="button"
-//   onclick="guardar()"
-//   id="guardar"
-//   class="btn btn-warning btn-block mt-5"
-//   value="Guardar"
-// />
-
-// <table class="table mt-5">
-//   <thead class="thead-dark text-center">
-//     <tr>
-//       <th scope="col">Actividad</th>
-//       <th scope="col">Descripción</th>
-//       <th scope="col">Borrar</th>
-//     </tr>
-//   </thead>
-//   <tbody id="tabla"></tbody>
-// </table>
-// </div>
+function eliminar_popup() {
+    var mensaje_validar_correo = document.getElementById("mensajeValidacion");
+    mensaje_validar_correo.style.display = "none";
+}

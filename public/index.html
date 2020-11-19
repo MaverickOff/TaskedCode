@@ -21,97 +21,123 @@
   <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
   <!-- initialize the SDK after all desired features are loaded -->
   <script defer src="/__/firebase/init.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+    integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+    crossorigin="anonymous"></script>
 
   <!-- ARCHIVOS (JS, CSS, BOOTSTRAP) -->
   <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/clases.css">
-  <link rel="stylesheet" href="css/etiquetas.css">
-  <script src="js/base-de-datos.js"></script>
-  <script src="js/registro.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
+  <!-- 
+  <link rel="stylesheet" href="css/classes.css">
+ -->
+  <link rel="stylesheet" href="css/etiquets.css">
+  <link rel="stylesheet" href="css/grid-login.css">
+  <link rel="stylesheet" href="css/grid-tabla.css">
+
+  <script src="js/BD-Tasked.js"></script>
+  <script src="js/Log-in.js"></script>
 </head>
 
-<body>
+<body id="body">
+
   <div id="login">
 
-    <div class="centrar">
-      <div class="cuadro-registro">
+    <div class="grid-container-login">
+      <div class="grid-registrar">
         <!--REGISTRAR UNA CUENTA-->
-        <form method="post" action="" class="m-5">
+        <form method="post">
           <legend>
-            <h1 class="text-dark">Registrate en <strong>TASKED</strong></h1>
+            <h1 class="text-dark">
+              Registrate en <strong>TASKED</strong>
+            </h1>
           </legend>
           <div class="input-group">
             <input type="email" class="input-registro" placeholder="Correo" id="email-new"
-              aria-describedby="emailHelpId" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Correo'"
-              autocomplete="email" required />
+              onfocus="this.placeholder = ''" onblur="this.placeholder = 'Correo'" autocomplete="email" required />
+
             <input type="password" class="input-registro" placeholder="Contraseña" id="password-new"
-              onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contraseña'"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" autocomplete="new-password" required />
+              onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contraseña'" pattern=""
+              autocomplete="new-password" required />
           </div>
-          <input type="submit" class="btn-registro" onclick="registrarCuenta()" value="Registrarse" />
+          <div>
+            <input type="submit" class="btn-registro" onclick="registrarCuenta()" value="Registrarse" />
+          </div>
         </form>
       </div>
 
-      <div class="cuadro-login">
-        <div class="">
-          <!--INICIAR SESIÓN-->
-          <form action="" method=" POST">
-            <legend>
-              <h1 class="text-light">
-                Iniciar sesión en <strong>Tasked</strong>
-              </h1>
-            </legend>
-            <div class="input-group">
-              <input type="email" class="input-ingreso" placeholder="Correo" id="email" aria-describedby="emailHelpId"
-                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Correo'" autocomplete="email" required />
+      <div class="grid-login">
+        <!--INICIAR SESIÓN-->
+        <form method=" POST">
+          <legend>
+            <h1 class="text-light">
+              Iniciar sesión en <strong>Tasked</strong>
+            </h1>
+          </legend>
+          <div class="input-group">
+            <input type="email" class="input-ingreso" placeholder="Correo" id="email" onfocus="this.placeholder = ''"
+              onblur="this.placeholder = 'Correo'" autocomplete="email" required />
 
-              <input type="password" class="input-ingreso" placeholder="Contraseña" id="password"
-                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contraseña'" autocomplete="new-password"
-                required />
-            </div>
-            <div class="">
-              <input type="button" class="btn-ingreso" onclick="ingresarCuenta()" value="Ingresar" />
-
-              <a href="#" class="link-control" onclick="mensajeError()">¿Olvidaste tu contraseña?</a>
-            </div>
-          </form>
-        </div>
+            <input type="password" class="input-ingreso" placeholder="Contraseña" id="password"
+              onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contraseña'" autocomplete="new-password"
+              required />
+          </div>
+          <div>
+            <input type="submit" class="btn-ingreso" onclick="ingresarCuenta()" value="Ingresar" />
+          </div>
+        </form>
       </div>
     </div>
   </div>
 
+  <div id="mensajeValidacion">
+  </div>
+
+  <!-- ---------------------------- -->
+
   <div id="panel-de-tareas">
+
     <nav class="navbar navbar-inverse navbar-dark bg-primary">
       <span class="navbar-brand"><strong>TASKED</strong></span>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <button type="submit" onclick="cerrarSesion()" class="btn btn-warning my-2 my-sm-0 ">Cerrar
+
+      <div class="nav navbar-nav navbar-right">
+
+        <div>
+          <button type="submit" onclick="cerrarSesion()" id="cerrarSesion" class="btn btn-cerrar-session">Cerrar
             sesion</button>
-        </li>
-      </ul>
+        </div>
+      </div>
     </nav>
 
-    
-    <input type="text" id="nombreTarea" class="m-3 input-tarea" placeholder="Nombre de tu tarea" />
-    <input type="text" id="descripcionTarea" class="m-3 input-tarea" placeholder="Descripcion de tu tarea" />
 
-    <button class="btn btn-info btn-tarea" id="boton" onclick="guardar()">
+    <input type="text" id="nombreTarea" class="input-tarea" placeholder="Nombre de tu tarea" />
+    <input type="text" id="descripcionTarea" class="input-tarea" placeholder="Descripcion de tu tarea" />
+    <input type="date" id="fecha" class="input-fecha">
+
+    <button class="btn btn-tarea" id="boton" onclick="guardar()">
       agregar tarea
     </button>
+    <br>
+    <br>
 
-    <table class="table table-light">
-      <thead class="thead-light">
-        <tr>
-          <th>#</th>
-          <th>Nombre</th>
-          <th>Descripcion</th>
-          <th>Opciones</th>
-        </tr>
-      </thead>
 
-      <tbody id="tabla">
-      </tbody>
-    </table>
+    <div class="grid-container-tabla">
+      <table class="grid-tabla table-light">
+        <thead class="thead-light text-left">
+          <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Fecha</th>
+            <th class="opciones">Opciones</th>
+          </tr>
+        </thead>
+
+        <tbody id="tabla">
+
+        </tbody>
+      </table>
+    </div>
   </div>
   <!-- FIREBASE -->
   <script>
